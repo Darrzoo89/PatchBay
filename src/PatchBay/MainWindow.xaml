@@ -4,7 +4,7 @@
         Title="PatchBay — patch cables for your PC's audio"
         Width="1320" Height="820" MinWidth="800" MinHeight="500"
         Background="#17191E" Foreground="#E6E6E6"
-        FontFamily="Segoe UI" FontSize="13">
+        FontFamily="Segoe UI" FontSize="13" Icon="PatchBay.ico">
     <DockPanel>
         <!-- Toolbar -->
         <Border DockPanel.Dock="Top" Background="#21242B" Padding="10,8" BorderBrush="#2E323A" BorderThickness="0,0,0,1">
