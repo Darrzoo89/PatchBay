@@ -1,0 +1,71 @@
+﻿<Window x:Class="PatchBay.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="PatchBay — patch cables for your PC's audio"
+        Width="1320" Height="820" MinWidth="800" MinHeight="500"
+        Background="#17191E" Foreground="#E6E6E6"
+        FontFamily="Segoe UI" FontSize="13">
+    <DockPanel>
+        <!-- Toolbar -->
+        <Border DockPanel.Dock="Top" Background="#21242B" Padding="10,8" BorderBrush="#2E323A" BorderThickness="0,0,0,1">
+            <DockPanel>
+                <Button x:Name="GuideButton" DockPanel.Dock="Right" Content="?  Setup guide" Click="GuideButton_Click"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="PatchBay" FontSize="19" FontWeight="Bold" VerticalAlignment="Center" Margin="2,0,16,0"/>
+                    <ToggleButton x:Name="PowerButton" Content="●  Audio ON" Click="PowerButton_Click"
+                                  ToolTip="Turn all cables on or off"/>
+                    <Button x:Name="LatencyButton" Content="Buffer: 3 ms ▾" Click="LatencyButton_Click"
+                            ToolTip="Smaller = less delay. Raise it if you hear crackles."/>
+                    <Button Content="⟳  Refresh devices" Click="RefreshButton_Click"
+                            ToolTip="Re-scan audio devices and retry failed cables"/>
+                    <Button x:Name="HiddenButton" Content="Hidden boxes ▾" Click="HiddenButton_Click"/>
+                    <Button Content="Auto-arrange" Click="ArrangeButton_Click" ToolTip="Put every box back in a tidy layout"/>
+                    <CheckBox x:Name="LoopbackCheck" Content="Show &quot;what's playing&quot; jacks" Click="LoopbackCheck_Click"
+                              ToolTip="Adds an OUT jack to every speaker so you can grab whatever is playing on it"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <!-- Status bar -->
+        <Border DockPanel.Dock="Bottom" Background="#21242B" Padding="12,5" BorderBrush="#2E323A" BorderThickness="0,1,0,0">
+            <DockPanel>
+                <TextBlock x:Name="CountText" DockPanel.Dock="Right" Foreground="#8B93A1"/>
+                <TextBlock x:Name="StatusText" Foreground="#AEB5C2" TextTrimming="CharacterEllipsis"
+                           Text="Drag from a jack to another jack to plug in a cable."/>
+            </DockPanel>
+        </Border>
+
+        <!-- Setup guide -->
+        <Border x:Name="GuidePanel" DockPanel.Dock="Right" Width="380" Background="#1E2127"
+                BorderBrush="#2E323A" BorderThickness="1,0,0,0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="18,14">
+                <StackPanel x:Name="GuideContent"/>
+            </ScrollViewer>
+        </Border>
+
+        <!-- The patch board -->
+        <ScrollViewer x:Name="BoardScroll" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <Canvas x:Name="Board" Width="2600" Height="1800" ClipToBounds="True"
+                    MouseMove="Board_MouseMove" MouseLeftButtonUp="Board_MouseLeftButtonUp">
+                <Canvas.Background>
+                    <DrawingBrush TileMode="Tile" Viewport="0,0,24,24" ViewportUnits="Absolute">
+                        <DrawingBrush.Drawing>
+                            <DrawingGroup>
+                                <GeometryDrawing Brush="#17191E">
+                                    <GeometryDrawing.Geometry>
+                                        <RectangleGeometry Rect="0,0,24,24"/>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                                <GeometryDrawing Brush="#262A31">
+                                    <GeometryDrawing.Geometry>
+                                        <EllipseGeometry Center="1.5,1.5" RadiusX="1.2" RadiusY="1.2"/>
+                                    </GeometryDrawing.Geometry>
+                                </GeometryDrawing>
+                            </DrawingGroup>
+                        </DrawingBrush.Drawing>
+                    </DrawingBrush>
+                </Canvas.Background>
+            </Canvas>
+        </ScrollViewer>
+    </DockPanel>
+</Window>
